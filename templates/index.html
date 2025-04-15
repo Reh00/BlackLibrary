@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Black Library</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="top-bar">
+            <span>Frete Grátis acima de R$249</span>
+        </div>
+        <div class="main-header">
+            <div class="logo">
+                <h1>Black Library</h1>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Títulos, Autores, Gêneros e Linhas editoriais">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="user-options">
+                <a href="#">Dark Book</a>
+                <a href="#">Entre ou cadastre-se</a>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#">EDITORA</a></li>
+                <li><a href="#">LIVROS</a></li>
+                <li><a href="#">TAROTS & ORÁCULOS</a></li>
+                <li><a href="#" class="highlight">NEW</a></li>
+                <li><a href="#">PROMOÇÕES</a></li>
+                <li><a href="#">AUTORES</a></li>
+                <li><a href="#">MARCAS</a></li>
+                <li><a href="#">WISHLIST</a></li>
+                <li><a href="#">MEUS PEDIDOS</a></li>
+                <li><a href="#">CASHBACK</a></li>
+                <li><a href="#">REVENDA OFICIAL</a></li>
+                <li><a href="#" class="help">AJUDA</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="/">Home</a> > <a href="#">Livros</a>
+        </div>
+
+        <!-- Carrossel de Destaques -->
+        <section class="carousel">
+            <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
+            <div class="carousel-items">
+                <div class="carousel-item"><img src="/assets/images/carousel/pedra-papel-tesoura-brilho.png" alt="Destaque 1"></div>
+                <div class="carousel-item"><img src="/assets/images/carousel/Crime-Scene-stories.png" alt="Destaque 2"></div>
+                <div class="carousel-item"><img src="/assets/images/carousel/destaque-menu-bolinha-tarot.png" alt="Destaque 3"></div>
+                <div class="carousel-item"><img src="/assets/images/carousel/menu-bolinha-nosferatu.png" alt="Destaque 4"></div>
+                <div class="carousel-item"><img src="/assets/images/carousel/menu-bolinha-helter_skelter.png" alt="Destaque 5"></div>
+                <div class="carousel-item"><img src="/assets/images/carousel/sociedade-secreta-storie.png" alt="Destaque 6"></div>
+                <div class="carousel-item"><img src="/assets/images/carousel/stories-macabra-destaque.png" alt="Destaque 7"></div>
+                <div class="carousel-item"><img src="/assets/images/carousel/stories-magicae-destaque.png" alt="Destaque 8"></div>
+                <div class="carousel-item"><img src="/assets/images/carousel/Todos-os-livros-stories.png" alt="Destaque 9"></div>
+                <div class="carousel-item"><img src="/assets/images/carousel/wish-storie.png" alt="Destaque 10"></div>
+                <div class="carousel-item"><img src="/assets/images/carousel/Medo-classico-stories.png" alt="Destaque 11"></div>
+                <div class="carousel-item"><img src="/assets/images/carousel/Storie-Nacional.png" alt="Destaque 12"></div>
+                <div class="carousel-item"><img src="/assets/images/carousel/Storie-Darklove.png" alt="Destaque 13"></div>
+                <div class="carousel-item"><img src="/assets/images/carousel/Storie-Graphic-Novel.png" alt="Destaque 14"></div>
+                <div class="carousel-item"><img src="/assets/images/carousel/Darkside-stories.png" alt="Destaque 15"></div>
+                <div class="carousel-item"><img src="/assets/images/carousel/Caveirinha-stories.png" alt="Destaque 16"></div>
+                <div class="carousel-item"><img src="/assets/images/carousel/destaque-cinebook.png" alt="Destaque 17"></div>
+                <div class="carousel-item"><img src="/assets/images/carousel/destaque-autores.png" alt="Destaque 18"></div>
+            </div>
+            <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
+        </section>
+
+        <!-- Seção de Livros -->
+        <section class="books-section">
+            <aside class="categories">
+                <h2>LIVROS</h2>
+                <h3>CATEGORIA</h3>
+                <ul>
+                    <li><input type="checkbox"> Ficção</li>
+                    <li><input type="checkbox"> Terror e Suspense</li>
+                    <li><input type="checkbox"> HQs e Mangás</li>
+                    <li><input type="checkbox"> Fantasia</li>
+                    <li><input type="checkbox"> Romance</li>
+                    <li><input type="checkbox"> Clássicos</li>
+                    <li><input type="checkbox"> Não Ficção</li>
+                    <li><input type="checkbox"> Crimes e Investigação</li>
+                    <li><input type="checkbox"> Biografia</li>
+                    <li><input type="checkbox"> Sobrenatural</li>
+                    <li><input type="checkbox"> Filmes, séries e games</li>
+                </ul>
+            </aside>
+            <div class="books-list">
+                <div class="books-header">
+                    <span>Produtos encontrados: {{ livros|length }}</span>
+                    <div class="sort">
+                        <label>Ordenar por:</label>
+                        <select>
+                            <option>Mais Vendidos</option>
+                            <option>Preço: Menor para Maior</option>
+                            <option>Preço: Maior para Menor</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="books-grid">
+                    {% for livro in livros %}
+                    <div class="book-card">
+                        <a href="/livro/{{ livro['id'] }}">
+                            <img src="{{ livro['imagem'] }}" alt="{{ livro['titulo'] }}">
+                            {% if livro['desconto'] %}
+                            <span class="discount">{{ livro['desconto'] }}</span>
+                            {% endif %}
+                            <h3>{{ livro['titulo'] }}</h3>
+                            <p class="author">{{ livro['autor'] }}</p>
+                            <div class="book-overlay">
+                                <div class="price-info">
+                                    <span class="original-price">R$ {{ livro['preco'] }}</span>
+                                    {% if livro['desconto'] %}
+                                    <span class="discounted-price">R$ {{ livro['preco_com_desconto'] }}</span>
+                                    <p>Ou em 1x de R$ {{ livro['preco_com_desconto'] }} sem juros no PIX</p>
+                                    {% endif %}
+                                </div>
+                                <button class="btn-details">Ver Detalhes</button>
+                                <button class="btn-buy">Compra Rápida</button>
+                            </div>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>© 2025 BlackLibrary Books. Todos os direitos reservados.</p>
+        <a href="/admin.html" class="admin-link">Área de Administração</a>
+    </footer>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>

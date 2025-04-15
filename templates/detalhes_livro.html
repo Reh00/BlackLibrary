@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ livro['titulo'] }} - Black Library</title>
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="top-bar">
+            <span>Frete Grátis acima de R$249</span>
+        </div>
+        <div class="main-header">
+            <div class="logo">
+                <h1>Black Library</h1>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Títulos, Autores, Gêneros e Linhas editoriais">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="user-options">
+                <a href="#">Dark Book</a>
+                <a href="#">Entre ou cadastre-se</a>
+                <i class="fas fa-heart"></i>
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#">EDITORA</a></li>
+                <li><a href="#">LIVROS</a></li>
+                <li><a href="#">TAROTS & ORÁCULOS</a></li>
+                <li><a href="#" class="highlight">NEW</a></li>
+                <li><a href="#">PROMOÇÕES</a></li>
+                <li><a href="#">AUTORES</a></li>
+                <li><a href="#">MARCAS</a></li>
+                <li><a href="#">WISHLIST</a></li>
+                <li><a href="#">MEUS PEDIDOS</a></li>
+                <li><a href="#">CASHBACK</a></li>
+                <li><a href="#">REVENDA OFICIAL</a></li>
+                <li><a href="#" class="help">AJUDA</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main>
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="/">Home</a> > <a href="/">Livros</a> > <span>{{ livro['titulo'] }}</span>
+        </div>
+
+        <!-- Detalhes do Livro -->
+        <section class="book-details">
+            <div class="book-image">
+                <img src="{{ livro['imagem'] }}" alt="{{ livro['titulo'] }}">
+                {% if livro['desconto'] %}
+                <span class="discount">{{ livro['desconto'] }}</span>
+                {% endif %}
+            </div>
+            <div class="book-info">
+                <h1>{{ livro['titulo'] }}</h1>
+                <p class="author">{{ livro['autor'] }}</p>
+                <p class="price">R$ {{ livro['preco'] }}</p>
+                <button class="buy-btn">COMPRAR</button>
+                <div class="book-meta">
+                    <p><strong>Autor:</strong> {{ livro['autor'] }}</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Descrição -->
+        <section class="book-description">
+            <h2>Descrição</h2>
+            <p>{{ livro['descricao'] }}</p>
+        </section>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <p>© 2025 BlackLibrary Books. Todos os direitos reservados.</p>
+        <a href="/admin.html" class="admin-link">Área de Administração</a>
+    </footer>
+
+    <script src="/js/script.js"></script>
+</body>
+</html>
