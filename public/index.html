@@ -81,35 +81,46 @@
 
         <!-- Seção de Livros -->
         <section class="books-section">
-            <aside class="categories">
-                <h2>LIVROS</h2>
-                <h3>CATEGORIA</h3>
-                <ul>
-                    <li><input type="checkbox"> Ficção</li>
-                    <li><input type="checkbox"> Terror e Suspense</li>
-                    <li><input type="checkbox"> HQs e Mangás</li>
-                    <li><input type="checkbox"> Fantasia</li>
-                    <li><input type="checkbox"> Romance</li>
-                    <li><input type="checkbox"> Clássicos</li>
-                    <li><input type="checkbox"> Não Ficção</li>
-                    <li><input type="checkbox"> Crimes e Investigação</li>
-                    <li><input type="checkbox"> Biografia</li>
-                    <li><input type="checkbox"> Sobrenatural</li>
-                    <li><input type="checkbox"> Filmes, séries e games</li>
-                </ul>
+                <div class="filter-section">
+                    <!-- Conteúdo vazio no mobile, usado apenas no desktop -->
+                </div>
             </aside>
             <div class="books-list">
+                <div class="books-controls">
+                    <div class="controls-wrapper">
+                        <div class="sort">
+                            <select class="sort-select">
+                                <option value="id" {% if sort_by == 'id' %}selected{% endif %}>ORDENAR POR: Padrão</option>
+                                <option value="mais-vendidos" {% if sort_by == 'mais-vendidos' %}selected{% endif %}>Mais Vendidos</option>
+                                <option value="preco-menor" {% if sort_by == 'preco-menor' %}selected{% endif %}>Preço: Menor para Maior</option>
+                                <option value="preco-maior" {% if sort_by == 'preco-maior' %}selected{% endif %}>Preço: Maior para Menor</option>
+                            </select>
+                        </div>
+                        <div class="filter">
+                            <select class="filter-select">
+                                <option value="closed" selected>FILTRAR</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="filter-content">
+                        <h3>CATEGORIAS</h3>
+                        <ul>
+                            <li><input type="checkbox"> Ficção</li>
+                            <li><input type="checkbox"> Terror e Suspense</li>
+                            <li><input type="checkbox"> HQs e Mangás</li>
+                            <li><input type="checkbox"> Fantasia</li>
+                            <li><input type="checkbox"> Romance</li>
+                            <li><input type="checkbox"> Clássicos</li>
+                            <li><input type="checkbox"> Não Ficção</li>
+                            <li><input type="checkbox"> Crimes e Investigação</li>
+                            <li><input type="checkbox"> Biografia</li>
+                            <li><input type="checkbox"> Sobrenatural</li>
+                            <li><input type="checkbox"> Filmes, séries e games</li>
+                        </ul>
+                    </div>
+                </div>
                 <div class="books-header">
                     <span>Produtos encontrados: {{ livros|length }}</span>
-                    <div class="sort">
-                        <label>Ordenar por:</label>
-                        <select onchange="window.location.href='/?sort=' + this.value">
-                            <option value="id" {% if sort_by == 'id' %}selected{% endif %}>Padrão</option>
-                            <option value="mais-vendidos" {% if sort_by == 'mais-vendidos' %}selected{% endif %}>Mais Vendidos</option>
-                            <option value="preco-menor" {% if sort_by == 'preco-menor' %}selected{% endif %}>Preço: Menor para Maior</option>
-                            <option value="preco-maior" {% if sort_by == 'preco-maior' %}selected{% endif %}>Preço: Maior para Menor</option>
-                        </select>
-                    </div>
                 </div>
                 <div class="books-grid">
                     {% for livro in livros %}
@@ -124,7 +135,7 @@
                             <div class="book-overlay">
                                 <div class="price-info">
                                     <span class="original-price">R$ {{ livro['preco'] }}</span>
-                                    {% if livro['desconto'] %}
+                                    {% if livro['preco_com_desconto'] %}
                                     <span class="discounted-price">R$ {{ livro['preco_com_desconto'] }}</span>
                                     <p>Ou em 1x de R$ {{ livro['preco_com_desconto'] }} sem juros no PIX</p>
                                     {% endif %}
@@ -146,6 +157,6 @@
         <a href="/admin.html" class="admin-link">Área de Administração</a>
     </footer>
 
-    <script src="/js/script.js"></script>
+    <script src="/static/js/script.js"></script>
 </body>
 </html>
