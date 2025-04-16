@@ -2,9 +2,17 @@ from flask import Flask, request, jsonify, send_from_directory, render_template
 from flask_cors import CORS
 import sqlite3
 import os
+from jinja2 import Environment, FileSystemLoader, ChoiceLoader
 
 app = Flask(__name__)
 CORS(app)
+
+# Configurar o carregador de templates para múltiplas pastas
+template_loader = ChoiceLoader([
+    FileSystemLoader('templates'),  # Pasta padrão para templates
+    FileSystemLoader('public')      # Pasta adicional para index.html
+])
+app.jinja_env = Environment(loader=template_loader)
 
 def get_db_connection():
     conn = sqlite3.connect('livros.db')
@@ -42,9 +50,9 @@ def index():
     livros_formatados = []
     for livro in livros:
         livro_dict = dict(livro)
-        livro_dict['preco'] = f"{livro['preco']:.2f}"  # Formata o preço com 2 casas decimais
+        livro_dict['preco'] = f"{livro['preco']:.2f}"
         if livro['desconto']:
-            livro_dict['preco_com_desconto'] = f"{livro['preco'] * 0.9:.2f}"  # Calcula e formata o preço com desconto
+            livro_dict['preco_com_desconto'] = f"{livro['preco'] * 0.9:.2f}"
         else:
             livro_dict['preco_com_desconto'] = None
         livros_formatados.append(livro_dict)
@@ -59,7 +67,6 @@ def detalhes_livro(id):
     if livro is None:
         return render_template('livro_nao_encontrado.html'), 404
     
-    # Formatar o preço e preço com desconto
     livro_dict = dict(livro)
     livro_dict['preco'] = f"{livro['preco']:.2f}"
     if livro['desconto']:
@@ -105,11 +112,17 @@ def cadastrar_livro():
 
 @app.route('/livros', methods=['GET'])
 def listar_livros():
+    sort_by = request.args.get('sort', 'id')
+    sort_query = {
+        'mais-vendidos': 'id DESC',
+        'preco-menor': 'preco ASC',
+        'preco-maior': 'preco DESC'
+    }.get(sort_by, 'id')
+    
     conn = get_db_connection()
-    livros = conn.execute('SELECT * FROM livros').fetchall()
+    livros = conn.execute(f'SELECT * FROM livros ORDER BY {sort_query}').fetchall()
     conn.close()
     
-    # Formatar os preços na API também
     livros_formatados = []
     for livro in livros:
         livro_dict = dict(livro)

@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+livros.db
+.env

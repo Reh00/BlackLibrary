@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Black Library</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/static/css/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
@@ -57,24 +57,24 @@
         <section class="carousel">
             <button class="carousel-btn prev"><i class="fas fa-chevron-left"></i></button>
             <div class="carousel-items">
-                <div class="carousel-item"><img src="/assets/images/carousel/pedra-papel-tesoura-brilho.png" alt="Destaque 1"></div>
-                <div class="carousel-item"><img src="/assets/images/carousel/Crime-Scene-stories.png" alt="Destaque 2"></div>
-                <div class="carousel-item"><img src="/assets/images/carousel/destaque-menu-bolinha-tarot.png" alt="Destaque 3"></div>
-                <div class="carousel-item"><img src="/assets/images/carousel/menu-bolinha-nosferatu.png" alt="Destaque 4"></div>
-                <div class="carousel-item"><img src="/assets/images/carousel/menu-bolinha-helter_skelter.png" alt="Destaque 5"></div>
-                <div class="carousel-item"><img src="/assets/images/carousel/sociedade-secreta-storie.png" alt="Destaque 6"></div>
-                <div class="carousel-item"><img src="/assets/images/carousel/stories-macabra-destaque.png" alt="Destaque 7"></div>
-                <div class="carousel-item"><img src="/assets/images/carousel/stories-magicae-destaque.png" alt="Destaque 8"></div>
-                <div class="carousel-item"><img src="/assets/images/carousel/Todos-os-livros-stories.png" alt="Destaque 9"></div>
-                <div class="carousel-item"><img src="/assets/images/carousel/wish-storie.png" alt="Destaque 10"></div>
-                <div class="carousel-item"><img src="/assets/images/carousel/Medo-classico-stories.png" alt="Destaque 11"></div>
-                <div class="carousel-item"><img src="/assets/images/carousel/Storie-Nacional.png" alt="Destaque 12"></div>
-                <div class="carousel-item"><img src="/assets/images/carousel/Storie-Darklove.png" alt="Destaque 13"></div>
-                <div class="carousel-item"><img src="/assets/images/carousel/Storie-Graphic-Novel.png" alt="Destaque 14"></div>
-                <div class="carousel-item"><img src="/assets/images/carousel/Darkside-stories.png" alt="Destaque 15"></div>
-                <div class="carousel-item"><img src="/assets/images/carousel/Caveirinha-stories.png" alt="Destaque 16"></div>
-                <div class="carousel-item"><img src="/assets/images/carousel/destaque-cinebook.png" alt="Destaque 17"></div>
-                <div class="carousel-item"><img src="/assets/images/carousel/destaque-autores.png" alt="Destaque 18"></div>
+                <div class="carousel-item"><img src="/static/assets/images/carousel/pedra-papel-tesoura-brilho.png" alt="Destaque 1"></div>
+                <div class="carousel-item"><img src="/static/assets/images/carousel/Crime-Scene-stories.png" alt="Destaque 2"></div>
+                <div class="carousel-item"><img src="/static/assets/images/carousel/destaque-menu-bolinha-tarot.png" alt="Destaque 3"></div>
+                <div class="carousel-item"><img src="/static/assets/images/carousel/menu-bolinha-nosferatu.png" alt="Destaque 4"></div>
+                <div class="carousel-item"><img src="/static/assets/images/carousel/menu-bolinha-helter_skelter.png" alt="Destaque 5"></div>
+                <div class="carousel-item"><img src="/static/assets/images/carousel/sociedade-secreta-storie.png" alt="Destaque 6"></div>
+                <div class="carousel-item"><img src="/static/assets/images/carousel/stories-macabra-destaque.png" alt="Destaque 7"></div>
+                <div class="carousel-item"><img src="/static/assets/images/carousel/stories-magicae-destaque.png" alt="Destaque 8"></div>
+                <div class="carousel-item"><img src="/static/assets/images/carousel/Todos-os-livros-stories.png" alt="Destaque 9"></div>
+                <div class="carousel-item"><img src="/static/assets/images/carousel/wish-storie.png" alt="Destaque 10"></div>
+                <div class="carousel-item"><img src="/static/assets/images/carousel/Medo-classico-stories.png" alt="Destaque 11"></div>
+                <div class="carousel-item"><img src="/static/assets/images/carousel/Storie-Nacional.png" alt="Destaque 12"></div>
+                <div class="carousel-item"><img src="/static/assets/images/carousel/Storie-Darklove.png" alt="Destaque 13"></div>
+                <div class="carousel-item"><img src="/static/assets/images/carousel/Storie-Graphic-Novel.png" alt="Destaque 14"></div>
+                <div class="carousel-item"><img src="/static/assets/images/carousel/Darkside-stories.png" alt="Destaque 15"></div>
+                <div class="carousel-item"><img src="/static/assets/images/carousel/Caveirinha-stories.png" alt="Destaque 16"></div>
+                <div class="carousel-item"><img src="/static/assets/images/carousel/destaque-cinebook.png" alt="Destaque 17"></div>
+                <div class="carousel-item"><img src="/static/assets/images/carousel/destaque-autores.png" alt="Destaque 18"></div>
             </div>
             <button class="carousel-btn next"><i class="fas fa-chevron-right"></i></button>
         </section>
@@ -103,10 +103,11 @@
                     <span>Produtos encontrados: {{ livros|length }}</span>
                     <div class="sort">
                         <label>Ordenar por:</label>
-                        <select>
-                            <option>Mais Vendidos</option>
-                            <option>Preço: Menor para Maior</option>
-                            <option>Preço: Maior para Menor</option>
+                        <select onchange="window.location.href='/?sort=' + this.value">
+                            <option value="id" {% if sort_by == 'id' %}selected{% endif %}>Padrão</option>
+                            <option value="mais-vendidos" {% if sort_by == 'mais-vendidos' %}selected{% endif %}>Mais Vendidos</option>
+                            <option value="preco-menor" {% if sort_by == 'preco-menor' %}selected{% endif %}>Preço: Menor para Maior</option>
+                            <option value="preco-maior" {% if sort_by == 'preco-maior' %}selected{% endif %}>Preço: Maior para Menor</option>
                         </select>
                     </div>
                 </div>
