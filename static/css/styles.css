@@ -386,6 +386,7 @@ body {
 
 .btn-details,
 .btn-buy {
+    font-weight: bold;
     background-color: #ff0000;
     color: #fff;
     border: none;
@@ -449,6 +450,7 @@ body {
 }
 
 .book-info .buy-btn {
+    font-weight: bold;
     background-color: #ff0000;
     color: white;
     border: none;
