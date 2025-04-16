@@ -1,3 +1,4 @@
+import '../css/styles.css';
 document.addEventListener('DOMContentLoaded', () => {
     // Lógica do carrossel
     const carousel = document.querySelector('.carousel-items');
